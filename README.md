@@ -21,3 +21,11 @@ Morse code is named after Samuel Morse, one of the early developers of the syste
 - The letters of a word are separated by a space of duration equal to three dits, and words are separated by a space equal to seven dits.
 
 
+## Manual Setup
+```bash
+cargo build
+```
+
+Compiled application will land in `/target/debug/morse_code`
+
+> **NOTE:** You need [Rust Cargo](https://www.rust-lang.org/tools/install) installed on you machine
