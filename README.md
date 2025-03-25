@@ -28,4 +28,4 @@ cargo build
 
 Compiled application will land in `/target/debug/morse_code`
 
-> **NOTE:** You need [Rust Cargo](https://www.rust-lang.org/tools/install) installed on you machine
+> **NOTE:** You need [Rust Cargo](https://www.rust-lang.org/tools/install) installed on your machine

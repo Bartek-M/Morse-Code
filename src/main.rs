@@ -3,6 +3,7 @@ use std::collections::HashMap;
 use std::io::{self, Write};
 
 mod dictionary;
+mod audio;
 
 
 fn encode(text: String, dict: HashMap<char, &'static str>) -> String {
@@ -18,11 +19,16 @@ fn decode(text: String, dict: HashMap<&'static str, char>) -> String {
         .collect::<String>()
 }
 
-fn main() {
+fn clear() {
+    print!("\x1B[2J\x1B[1;1H");
     println!("Morse Translator (type 'exit' to quit)");
+}
+
+fn main() {
     let (text_to_morse, morse_to_text) = dictionary::morse_dict();
     let mut clipboard: ClipboardContext = ClipboardProvider::new().unwrap();
-
+    clear();
+    
     loop {
         print!("\nEnter text or Morse: ");
         io::stdout().flush().unwrap();
@@ -33,13 +39,18 @@ fn main() {
         
         if input == "EXIT" || input == "QUIT" {
             break;
+        } else if input == "CLEAR" {
+            clear();
         } else if input.chars().all(|c| c == '.' || c == '-' || c == '/' || c == ' ') {
             let result = decode(input.clone(), morse_to_text.clone());
+
             println!("Decoded text: {}", result);
             clipboard.set_contents(result).unwrap();
         } else {
             let result = encode(input, text_to_morse.clone());
             println!("Morse Code: {}", result);
+            
+            audio::morse_audio(&result);
             clipboard.set_contents(result).unwrap();
         }
     }
