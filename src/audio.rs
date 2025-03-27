@@ -2,10 +2,10 @@ use hound::{WavWriter, WavSpec, SampleFormat};
 use std::f32::consts::PI;
 
 const SAMPLE_RATE: u32 = 44100; 
-const FREQUENCY: f32 = 600.0; // Morse code tone (Hz)
-const AMPLITUDE: f32 = 0.5; 
+const FREQUENCY: f32 = 500.0; // Morse code tone (Hz)
+const AMPLITUDE: f32 = 1.0; 
 
-const UNIT: f32 = 0.1; // Base unit (100ms)
+const UNIT: f32 = 0.05; // Base unit (100ms)
 const DIT: f32 = UNIT;         
 const DAH: f32 = UNIT * 3.0;    
 const SPACE: f32 = UNIT;        
@@ -28,7 +28,7 @@ fn generate_silence(duration: f32) -> Vec<i16> {
     vec![0; samples]
 }
 
-pub fn morse_audio(text: &str) {
+pub fn output(text: &str) {
     let spec = WavSpec {
         channels: 1,
         sample_rate: SAMPLE_RATE,
